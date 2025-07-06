@@ -1,0 +1,442 @@
+==== PS2 Games Database RDF Graph (Turtle) ====
+<http://example.org/ps2games#RockstarGames>
+        a       <http://example.org/ps2games#Developer>;
+        <http://example.org/ps2games#foundedIn>
+                "1998";
+        <http://example.org/ps2games#hasName>
+                "Rockstar Games";
+        <http://example.org/ps2games#headquarteredIn>
+                "New York, USA" .
+
+<http://example.org/ps2games#Sony>
+        a       <http://example.org/ps2games#Publisher>;
+        <http://example.org/ps2games#hasName>
+                "Sony Computer Entertainment" .
+
+<http://example.org/ps2games#GodOfWar2>
+        a       <http://example.org/ps2games#ActionGame>;
+        <http://example.org/ps2games#developedBy>
+                <http://example.org/ps2games#SantaMonicaStudio>;
+        <http://example.org/ps2games#hasAgeRating>
+                "M";
+        <http://example.org/ps2games#hasGameplayHours>
+                "10";
+        <http://example.org/ps2games#hasGenre>
+                <http://example.org/ps2games#ActionGenre>;
+        <http://example.org/ps2games#hasLocation>
+                "Ancient Greece";
+        <http://example.org/ps2games#hasMetacriticScore>
+                "93";
+        <http://example.org/ps2games#hasMultiplayer>
+                "No";
+        <http://example.org/ps2games#hasProtagonist>
+                <http://example.org/ps2games#Kratos>;
+        <http://example.org/ps2games#hasRating>
+                "9.2";
+        <http://example.org/ps2games#hasSalesCount>
+                "4240000";
+        <http://example.org/ps2games#hasTitle>
+                "God of War II";
+        <http://example.org/ps2games#isSequelOf>
+                <http://example.org/ps2games#GodOfWar>;
+        <http://example.org/ps2games#publishedBy>
+                <http://example.org/ps2games#Sony>;
+        <http://example.org/ps2games#releasedIn>
+                "2007" .
+
+<http://example.org/ps2games#SolidSnake>
+        a       <http://example.org/ps2games#Protagonist>;
+        <http://example.org/ps2games#hasName>
+                "Solid Snake" .
+
+<http://example.org/ps2games#ActionGenre>
+        a       <http://example.org/ps2games#Genre>;
+        <http://example.org/ps2games#hasName>
+                "Action" .
+
+<http://example.org/ps2games#GameOfYear>
+        a       <http://example.org/ps2games#Award>;
+        <http://example.org/ps2games#hasName>
+                "Game of the Year" .
+
+<http://example.org/ps2games#GTASanAndreas>
+        a       <http://example.org/ps2games#ActionGame>;
+        <http://example.org/ps2games#developedBy>
+                <http://example.org/ps2games#RockstarGames>;
+        <http://example.org/ps2games#hasAgeRating>
+                "M";
+        <http://example.org/ps2games#hasGameplayHours>
+                "100";
+        <http://example.org/ps2games#hasGenre>
+                <http://example.org/ps2games#ActionGenre>;
+        <http://example.org/ps2games#hasLocation>
+                "San Andreas";
+        <http://example.org/ps2games#hasMetacriticScore>
+                "95";
+        <http://example.org/ps2games#hasMultiplayer>
+                "Yes";
+        <http://example.org/ps2games#hasProtagonist>
+                <http://example.org/ps2games#CJ>;
+        <http://example.org/ps2games#hasRating>
+                "9.6";
+        <http://example.org/ps2games#hasSalesCount>
+                "17330000";
+        <http://example.org/ps2games#hasTitle>
+                "Grand Theft Auto: San Andreas";
+        <http://example.org/ps2games#partOfSeries>
+                <http://example.org/ps2games#GrandTheftAutoSeries>;
+        <http://example.org/ps2games#publishedBy>
+                <http://example.org/ps2games#Take2>;
+        <http://example.org/ps2games#releasedIn>
+                "2004";
+        <http://example.org/ps2games#wonAward>
+                <http://example.org/ps2games#GameOfYear> .
+
+<http://example.org/ps2games#ActionGame>
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://example.org/ps2games#Game> .
+
+<http://example.org/ps2games#PlatformGame>
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://example.org/ps2games#Game> .
+
+<http://example.org/ps2games#SquareEnix>
+        a       <http://example.org/ps2games#Developer>;
+        <http://example.org/ps2games#foundedIn>
+                "1986";
+        <http://example.org/ps2games#hasName>
+                "Square Enix";
+        <http://example.org/ps2games#headquarteredIn>
+                "Tokyo, Japan" .
+
+<http://example.org/ps2games#TekkenSeries>
+        a       <http://example.org/ps2games#GameSeries>;
+        <http://example.org/ps2games#hasName>
+                "Tekken" .
+
+<http://example.org/ps2games#MetalGearSolid2>
+        a       <http://example.org/ps2games#ActionGame>;
+        <http://example.org/ps2games#developedBy>
+                <http://example.org/ps2games#Konami>;
+        <http://example.org/ps2games#hasAgeRating>
+                "M";
+        <http://example.org/ps2games#hasGameplayHours>
+                "12";
+        <http://example.org/ps2games#hasGenre>
+                <http://example.org/ps2games#ActionGenre>;
+        <http://example.org/ps2games#hasLocation>
+                "Big Shell";
+        <http://example.org/ps2games#hasMetacriticScore>
+                "96";
+        <http://example.org/ps2games#hasMultiplayer>
+                "No";
+        <http://example.org/ps2games#hasProtagonist>
+                <http://example.org/ps2games#SolidSnake>;
+        <http://example.org/ps2games#hasRating>
+                "9.6";
+        <http://example.org/ps2games#hasSalesCount>
+                "7000000";
+        <http://example.org/ps2games#hasTitle>
+                "Metal Gear Solid 2: Sons of Liberty";
+        <http://example.org/ps2games#partOfSeries>
+                <http://example.org/ps2games#MetalGearSeries>;
+        <http://example.org/ps2games#publishedBy>
+                <http://example.org/ps2games#Konami>;
+        <http://example.org/ps2games#releasedIn>
+                "2001" .
+
+<http://example.org/ps2games#Protagonist>
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://example.org/ps2games#Character> .
+
+<http://example.org/ps2games#GodOfWar>
+        a       <http://example.org/ps2games#ActionGame>;
+        <http://example.org/ps2games#developedBy>
+                <http://example.org/ps2games#SantaMonicaStudio>;
+        <http://example.org/ps2games#hasAgeRating>
+                "M";
+        <http://example.org/ps2games#hasGameplayHours>
+                "8";
+        <http://example.org/ps2games#hasGenre>
+                <http://example.org/ps2games#ActionGenre>;
+        <http://example.org/ps2games#hasLocation>
+                "Ancient Greece";
+        <http://example.org/ps2games#hasMetacriticScore>
+                "94";
+        <http://example.org/ps2games#hasMultiplayer>
+                "No";
+        <http://example.org/ps2games#hasProtagonist>
+                <http://example.org/ps2games#Kratos>;
+        <http://example.org/ps2games#hasRating>
+                "9.0";
+        <http://example.org/ps2games#hasSalesCount>
+                "4600000";
+        <http://example.org/ps2games#hasTitle>
+                "God of War";
+        <http://example.org/ps2games#publishedBy>
+                <http://example.org/ps2games#Sony>;
+        <http://example.org/ps2games#releasedIn>
+                "2005" .
+
+<http://example.org/ps2games#FinalFantasySeries>
+        a       <http://example.org/ps2games#GameSeries>;
+        <http://example.org/ps2games#hasName>
+                "Final Fantasy" .
+
+<http://example.org/ps2games#CJ>
+        a       <http://example.org/ps2games#Protagonist>;
+        <http://example.org/ps2games#hasName>
+                "Carl Johnson" .
+
+<http://example.org/ps2games#Konami>
+        a       <http://example.org/ps2games#Developer>;
+        <http://example.org/ps2games#foundedIn>
+                "1969";
+        <http://example.org/ps2games#hasName>
+                "Konami";
+        <http://example.org/ps2games#headquarteredIn>
+                "Tokyo, Japan" .
+
+<http://example.org/ps2games#Sephiroth>
+        a       <http://example.org/ps2games#Antagonist>;
+        <http://example.org/ps2games#hasName>
+                "Sephiroth" .
+
+<http://example.org/ps2games#RacingGame>
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://example.org/ps2games#Game> .
+
+<http://example.org/ps2games#Kratos>
+        a       <http://example.org/ps2games#Protagonist>;
+        <http://example.org/ps2games#hasName>
+                "Kratos" .
+
+<http://example.org/ps2games#RPGGenre>
+        a       <http://example.org/ps2games#Genre>;
+        <http://example.org/ps2games#hasName>
+                "Role-Playing Game" .
+
+<http://example.org/ps2games#FightingGame>
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://example.org/ps2games#Game> .
+
+<http://example.org/ps2games#BestRPG>
+        a       <http://example.org/ps2games#Award>;
+        <http://example.org/ps2games#hasName>
+                "Best RPG" .
+
+<http://example.org/ps2games#Take2>
+        a       <http://example.org/ps2games#Publisher>;
+        <http://example.org/ps2games#hasName>
+                "Take-Two Interactive" .
+
+<http://example.org/ps2games#SantaMonicaStudio>
+        a       <http://example.org/ps2games#Developer>;
+        <http://example.org/ps2games#foundedIn>
+                "1999";
+        <http://example.org/ps2games#hasName>
+                "Santa Monica Studio";
+        <http://example.org/ps2games#headquarteredIn>
+                "Los Angeles, USA" .
+
+<http://example.org/ps2games#Namco>
+        a       <http://example.org/ps2games#Developer>;
+        <http://example.org/ps2games#foundedIn>
+                "1955";
+        <http://example.org/ps2games#hasName>
+                "Namco";
+        <http://example.org/ps2games#headquarteredIn>
+                "Tokyo, Japan" .
+
+<http://example.org/ps2games#FinalFantasyX>
+        a       <http://example.org/ps2games#RPG>;
+        <http://example.org/ps2games#developedBy>
+                <http://example.org/ps2games#SquareEnix>;
+        <http://example.org/ps2games#hasAgeRating>
+                "T";
+        <http://example.org/ps2games#hasAntagonist>
+                <http://example.org/ps2games#Sephiroth>;
+        <http://example.org/ps2games#hasGameplayHours>
+                "60";
+        <http://example.org/ps2games#hasGenre>
+                <http://example.org/ps2games#RPGGenre>;
+        <http://example.org/ps2games#hasLocation>
+                "Spira";
+        <http://example.org/ps2games#hasMetacriticScore>
+                "92";
+        <http://example.org/ps2games#hasMultiplayer>
+                "No";
+        <http://example.org/ps2games#hasProtagonist>
+                <http://example.org/ps2games#Cloud>;
+        <http://example.org/ps2games#hasRating>
+                "9.0";
+        <http://example.org/ps2games#hasSalesCount>
+                "8500000";
+        <http://example.org/ps2games#hasTitle>
+                "Final Fantasy X";
+        <http://example.org/ps2games#partOfSeries>
+                <http://example.org/ps2games#FinalFantasySeries>;
+        <http://example.org/ps2games#publishedBy>
+                <http://example.org/ps2games#Sony>;
+        <http://example.org/ps2games#releasedIn>
+                "2001";
+        <http://example.org/ps2games#wonAward>
+                <http://example.org/ps2games#BestRPG> .
+
+<http://example.org/ps2games#PlatformGenre>
+        a       <http://example.org/ps2games#Genre>;
+        <http://example.org/ps2games#hasName>
+                "Platform" .
+
+<http://example.org/ps2games#Jin>
+        a       <http://example.org/ps2games#Protagonist>;
+        <http://example.org/ps2games#hasName>
+                "Jin Kazama" .
+
+<http://example.org/ps2games#Antagonist>
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://example.org/ps2games#Character> .
+
+<http://example.org/ps2games#Tekken3>
+        a       <http://example.org/ps2games#FightingGame>;
+        <http://example.org/ps2games#developedBy>
+                <http://example.org/ps2games#Namco>;
+        <http://example.org/ps2games#hasAgeRating>
+                "T";
+        <http://example.org/ps2games#hasGameplayHours>
+                "15";
+        <http://example.org/ps2games#hasGenre>
+                <http://example.org/ps2games#FightingGenre>;
+        <http://example.org/ps2games#hasLocation>
+                "Various";
+        <http://example.org/ps2games#hasMetacriticScore>
+                "96";
+        <http://example.org/ps2games#hasMultiplayer>
+                "Yes";
+        <http://example.org/ps2games#hasProtagonist>
+                <http://example.org/ps2games#Jin>;
+        <http://example.org/ps2games#hasRating>
+                "9.5";
+        <http://example.org/ps2games#hasSalesCount>
+                "8360000";
+        <http://example.org/ps2games#hasTitle>
+                "Tekken 3";
+        <http://example.org/ps2games#partOfSeries>
+                <http://example.org/ps2games#TekkenSeries>;
+        <http://example.org/ps2games#publishedBy>
+                <http://example.org/ps2games#Namco>;
+        <http://example.org/ps2games#releasedIn>
+                "1998" .
+
+<http://example.org/ps2games#RacingGenre>
+        a       <http://example.org/ps2games#Genre>;
+        <http://example.org/ps2games#hasName>
+                "Racing" .
+
+<http://example.org/ps2games#MetalGearSeries>
+        a       <http://example.org/ps2games#GameSeries>;
+        <http://example.org/ps2games#hasName>
+                "Metal Gear" .
+
+<http://example.org/ps2games#Cloud>
+        a       <http://example.org/ps2games#Protagonist>;
+        <http://example.org/ps2games#hasName>
+                "Cloud Strife" .
+
+<http://example.org/ps2games#GrandTheftAutoSeries>
+        a       <http://example.org/ps2games#GameSeries>;
+        <http://example.org/ps2games#hasName>
+                "Grand Theft Auto" .
+
+<http://example.org/ps2games#FightingGenre>
+        a       <http://example.org/ps2games#Genre>;
+        <http://example.org/ps2games#hasName>
+                "Fighting" .
+
+<http://example.org/ps2games#SportGame>
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://example.org/ps2games#Game> .
+
+<http://example.org/ps2games#RPG>
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://example.org/ps2games#Game> .
+
+Graph saved to ps2_games_database.ttl
+
+==== Query 1: All PS2 Games by Rating ====
+---------------------------------------------------------------------
+| title                                 | type             | rating |
+=====================================================================
+| "Grand Theft Auto: San Andreas"       | ps2:ActionGame   | "9.6"  |
+| "Metal Gear Solid 2: Sons of Liberty" | ps2:ActionGame   | "9.6"  |
+| "Tekken 3"                            | ps2:FightingGame | "9.5"  |
+| "God of War II"                       | ps2:ActionGame   | "9.2"  |
+| "Final Fantasy X"                     | ps2:RPG          | "9.0"  |
+| "God of War"                          | ps2:ActionGame   | "9.0"  |
+---------------------------------------------------------------------
+
+==== Query 2: Best-Selling PS2 Games (>5M sales) ====
+-------------------------------------------------------------------------
+| title                                 | sales      | developer        |
+=========================================================================
+| "Grand Theft Auto: San Andreas"       | "17330000" | "Rockstar Games" |
+| "Final Fantasy X"                     | "8500000"  | "Square Enix"    |
+| "Tekken 3"                            | "8360000"  | "Namco"          |
+| "Metal Gear Solid 2: Sons of Liberty" | "7000000"  | "Konami"         |
+-------------------------------------------------------------------------
+
+==== Query 3: Japanese Developers and Their Games ====
+------------------------------------------------------------------
+| developer     | title                                 | year   |
+==================================================================
+| "Konami"      | "Metal Gear Solid 2: Sons of Liberty" | "2001" |
+| "Namco"       | "Tekken 3"                            | "1998" |
+| "Square Enix" | "Final Fantasy X"                     | "2001" |
+------------------------------------------------------------------
+
+==== Query 4: Action Games with Protagonists ====
+-----------------------------------------------------------------------------
+| title                                 | protagonist    | location         |
+=============================================================================
+| "God of War"                          | "Kratos"       | "Ancient Greece" |
+| "God of War II"                       | "Kratos"       | "Ancient Greece" |
+| "Grand Theft Auto: San Andreas"       | "Carl Johnson" | "San Andreas"    |
+| "Metal Gear Solid 2: Sons of Liberty" | "Solid Snake"  | "Big Shell"      |
+-----------------------------------------------------------------------------
+
+==== Query 5: Game Series with Game Counts ====
+----------------------------------
+| seriesName         | gameCount |
+==================================
+| "Final Fantasy"    | 1         |
+| "Grand Theft Auto" | 1         |
+| "Metal Gear"       | 1         |
+| "Tekken"           | 1         |
+----------------------------------
+
+==== Query 6: High-Scoring Games (Metacritic >= 90) ====
+--------------------------------------------------------------------------------
+| title                                 | score | year   | genre               |
+================================================================================
+| "Metal Gear Solid 2: Sons of Liberty" | "96"  | "2001" | "Action"            |
+| "Tekken 3"                            | "96"  | "1998" | "Fighting"          |
+| "Grand Theft Auto: San Andreas"       | "95"  | "2004" | "Action"            |
+| "God of War"                          | "94"  | "2005" | "Action"            |
+| "God of War II"                       | "93"  | "2007" | "Action"            |
+| "Final Fantasy X"                     | "92"  | "2001" | "Role-Playing Game" |
+--------------------------------------------------------------------------------
+
+==== Query 7: Game Sequels and Their Predecessors ====
+-----------------------------------
+| sequelTitle     | originalTitle |
+===================================
+| "God of War II" | "God of War"  |
+-----------------------------------
+
+==== Query 8: Award-Winning Games ====
+---------------------------------------------------------------------------
+| title                           | awardName          | developer        |
+===========================================================================
+| "Final Fantasy X"               | "Best RPG"         | "Square Enix"    |
+| "Grand Theft Auto: San Andreas" | "Game of the Year" | "Rockstar Games" |
+---------------------------------------------------------------------------
