@@ -1,0 +1,37 @@
+<http://example.org/research#FoundationsAI>
+        a       <http://example.org/research#Paper>;
+        <http://example.org/research#authoredBy>
+                <http://example.org/research#Aneesh>;
+        <http://example.org/research#hasTitle>
+                "Foundations of Artificial Intelligence";
+        <http://example.org/research#hasTopic>
+                "Artificial Intelligence";
+        <http://example.org/research#presentedAt>
+                <http://example.org/research#ICML2025> .
+
+<http://example.org/research#ICML2025>
+        a       <http://example.org/research#Conference>;
+        <http://example.org/research#hasName>
+                "ICML 2025";
+        <http://example.org/research#heldInYear>
+                "2025" .
+
+<http://example.org/research#IITBombay>
+        a       <http://example.org/research#Institution>;
+        <http://example.org/research#hasLocation>
+                "Mumbai";
+        <http://example.org/research#hasName>
+                "IIT Bombay" .
+
+<http://example.org/research#Aneesh>
+        a       <http://example.org/research#AIResearcher>;
+        <http://example.org/research#affiliatedWith>
+                <http://example.org/research#IITBombay>;
+        <http://example.org/research#hasEmail>
+                "aneesh@iitb.ac.in";
+        <http://example.org/research#hasName>
+                "Aneesh Deshmukh" .
+
+<http://example.org/research#AIResearcher>
+        <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+                <http://example.org/research#Researcher> .

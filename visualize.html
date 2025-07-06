@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS2 Games Knowledge Graph Visualization</title>
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .graph-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .controls {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 10px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+        .info-panel {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PS2 Games Knowledge Graph</h1>
+            <p>Interactive visualization of PlayStation 2 games, developers, and relationships</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="gameCount">6</div>
+                <div class="stat-label">Games</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="developerCount">5</div>
+                <div class="stat-label">Developers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="characterCount">6</div>
+                <div class="stat-label">Characters</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="seriesCount">4</div>
+                <div class="stat-label">Game Series</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #FF6B6B;"></div>
+                <span>Games</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #4ECDC4;"></div>
+                <span>Developers</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #45B7D1;"></div>
+                <span>Characters</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #96CEB4;"></div>
+                <span>Series</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #FFEAA7;"></div>
+                <span>Genres</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #DDA0DD;"></div>
+                <span>Awards</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="resetView()">Reset View</button>
+            <button class="btn btn-secondary" onclick="togglePhysics()">Toggle Physics</button>
+            <button class="btn btn-secondary" onclick="exportImage()">Export Image</button>
+        </div>
+
+        <div class="graph-container" id="mynetworkid"></div>
+
+        <div class="info-panel">
+            <h3>How to Use:</h3>
+            <ul>
+                <li><strong>Click and drag</strong> nodes to explore relationships</li>
+                <li><strong>Hover</strong> over nodes to see details</li>
+                <li><strong>Zoom</strong> with mouse wheel or pinch gesture</li>
+                <li><strong>Double-click</strong> a node to focus on it</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Sample data representing your PS2 games knowledge graph
+        const nodes = new vis.DataSet([
+            // Games
+            {id: 'ff10', label: 'Final Fantasy X', group: 'game', color: '#FF6B6B', title: 'RPG • 2001 • Rating: 9.0'},
+            {id: 'gta_sa', label: 'GTA: San Andreas', group: 'game', color: '#FF6B6B', title: 'Action • 2004 • Rating: 9.6'},
+            {id: 'tekken3', label: 'Tekken 3', group: 'game', color: '#FF6B6B', title: 'Fighting • 1998 • Rating: 9.5'},
+            {id: 'mgs2', label: 'Metal Gear Solid 2', group: 'game', color: '#FF6B6B', title: 'Action • 2001 • Rating: 9.6'},
+            {id: 'gow', label: 'God of War', group: 'game', color: '#FF6B6B', title: 'Action • 2005 • Rating: 9.0'},
+            {id: 'gow2', label: 'God of War II', group: 'game', color: '#FF6B6B', title: 'Action • 2007 • Rating: 9.2'},
+            
+            // Developers
+            {id: 'square', label: 'Square Enix', group: 'developer', color: '#4ECDC4', title: 'Developer • Tokyo, Japan'},
+            {id: 'rockstar', label: 'Rockstar Games', group: 'developer', color: '#4ECDC4', title: 'Developer • New York, USA'},
+            {id: 'namco', label: 'Namco', group: 'developer', color: '#4ECDC4', title: 'Developer • Tokyo, Japan'},
+            {id: 'konami', label: 'Konami', group: 'developer', color: '#4ECDC4', title: 'Developer • Tokyo, Japan'},
+            {id: 'santa_monica', label: 'Santa Monica Studio', group: 'developer', color: '#4ECDC4', title: 'Developer • Los Angeles, USA'},
+            
+            // Characters
+            {id: 'cloud', label: 'Cloud Strife', group: 'character', color: '#45B7D1', title: 'Protagonist • Final Fantasy X'},
+            {id: 'cj', label: 'Carl Johnson', group: 'character', color: '#45B7D1', title: 'Protagonist • GTA: San Andreas'},
+            {id: 'jin', label: 'Jin Kazama', group: 'character', color: '#45B7D1', title: 'Protagonist • Tekken 3'},
+            {id: 'snake', label: 'Solid Snake', group: 'character', color: '#45B7D1', title: 'Protagonist • Metal Gear Solid 2'},
+            {id: 'kratos', label: 'Kratos', group: 'character', color: '#45B7D1', title: 'Protagonist • God of War'},
+            {id: 'sephiroth', label: 'Sephiroth', group: 'character', color: '#45B7D1', title: 'Antagonist • Final Fantasy X'},
+            
+            // Series
+            {id: 'ff_series', label: 'Final Fantasy Series', group: 'series', color: '#96CEB4', title: 'Game Series'},
+            {id: 'gta_series', label: 'GTA Series', group: 'series', color: '#96CEB4', title: 'Game Series'},
+            {id: 'tekken_series', label: 'Tekken Series', group: 'series', color: '#96CEB4', title: 'Game Series'},
+            {id: 'mg_series', label: 'Metal Gear Series', group: 'series', color: '#96CEB4', title: 'Game Series'},
+            
+            // Genres
+            {id: 'rpg', label: 'RPG', group: 'genre', color: '#FFEAA7', title: 'Role-Playing Game'},
+            {id: 'action', label: 'Action', group: 'genre', color: '#FFEAA7', title: 'Action Game'},
+            {id: 'fighting', label: 'Fighting', group: 'genre', color: '#FFEAA7', title: 'Fighting Game'},
+            
+            // Awards
+            {id: 'goty', label: 'Game of the Year', group: 'award', color: '#DDA0DD', title: 'Award'},
+            {id: 'best_rpg', label: 'Best RPG', group: 'award', color: '#DDA0DD', title: 'Award'},
+        ]);
+
+        const edges = new vis.DataSet([
+            // Developer relationships
+            {from: 'square', to: 'ff10', label: 'developed', arrows: 'to', color: '#666'},
+            {from: 'rockstar', to: 'gta_sa', label: 'developed', arrows: 'to', color: '#666'},
+            {from: 'namco', to: 'tekken3', label: 'developed', arrows: 'to', color: '#666'},
+            {from: 'konami', to: 'mgs2', label: 'developed', arrows: 'to', color: '#666'},
+            {from: 'santa_monica', to: 'gow', label: 'developed', arrows: 'to', color: '#666'},
+            {from: 'santa_monica', to: 'gow2', label: 'developed', arrows: 'to', color: '#666'},
+            
+            // Character relationships
+            {from: 'ff10', to: 'cloud', label: 'hasProtagonist', arrows: 'to', color: '#45B7D1'},
+            {from: 'ff10', to: 'sephiroth', label: 'hasAntagonist', arrows: 'to', color: '#FF6B6B'},
+            {from: 'gta_sa', to: 'cj', label: 'hasProtagonist', arrows: 'to', color: '#45B7D1'},
+            {from: 'tekken3', to: 'jin', label: 'hasProtagonist', arrows: 'to', color: '#45B7D1'},
+            {from: 'mgs2', to: 'snake', label: 'hasProtagonist', arrows: 'to', color: '#45B7D1'},
+            {from: 'gow', to: 'kratos', label: 'hasProtagonist', arrows: 'to', color: '#45B7D1'},
+            {from: 'gow2', to: 'kratos', label: 'hasProtagonist', arrows: 'to', color: '#45B7D1'},
+            
+            // Series relationships
+            {from: 'ff10', to: 'ff_series', label: 'partOfSeries', arrows: 'to', color: '#96CEB4'},
+            {from: 'gta_sa', to: 'gta_series', label: 'partOfSeries', arrows: 'to', color: '#96CEB4'},
+            {from: 'tekken3', to: 'tekken_series', label: 'partOfSeries', arrows: 'to', color: '#96CEB4'},
+            {from: 'mgs2', to: 'mg_series', label: 'partOfSeries', arrows: 'to', color: '#96CEB4'},
+            
+            // Genre relationships
+            {from: 'ff10', to: 'rpg', label: 'hasGenre', arrows: 'to', color: '#FFEAA7'},
+            {from: 'gta_sa', to: 'action', label: 'hasGenre', arrows: 'to', color: '#FFEAA7'},
+            {from: 'tekken3', to: 'fighting', label: 'hasGenre', arrows: 'to', color: '#FFEAA7'},
+            {from: 'mgs2', to: 'action', label: 'hasGenre', arrows: 'to', color: '#FFEAA7'},
+            {from: 'gow', to: 'action', label: 'hasGenre', arrows: 'to', color: '#FFEAA7'},
+            {from: 'gow2', to: 'action', label: 'hasGenre', arrows: 'to', color: '#FFEAA7'},
+            
+            // Award relationships
+            {from: 'gta_sa', to: 'goty', label: 'wonAward', arrows: 'to', color: '#DDA0DD'},
+            {from: 'ff10', to: 'best_rpg', label: 'wonAward', arrows: 'to', color: '#DDA0DD'},
+            
+            // Sequel relationship
+            {from: 'gow2', to: 'gow', label: 'isSequelOf', arrows: 'to', color: '#FF9500', width: 3},
+        ]);
+
+        const container = document.getElementById('mynetworkid');
+        const data = {
+            nodes: nodes,
+            edges: edges
+        };
+
+        const options = {
+            nodes: {
+                shape: 'dot',
+                size: 30,
+                font: {
+                    size: 14,
+                    color: '#333'
+                },
+                borderWidth: 2,
+                shadow: true
+            },
+            edges: {
+                width: 2,
+                color: {inherit: 'from'},
+                smooth: {
+                    type: 'continuous'
+                },
+                font: {
+                    size: 12,
+                    color: '#666'
+                }
+            },
+            physics: {
+                enabled: true,
+                stabilization: {
+                    iterations: 100
+                },
+                barnesHut: {
+                    gravitationalConstant: -2000,
+                    centralGravity: 0.1,
+                    springLength: 200,
+                    springConstant: 0.04,
+                    damping: 0.09
+                }
+            },
+            interaction: {
+                hover: true,
+                tooltipDelay: 300,
+                dragNodes: true,
+                dragView: true,
+                zoomView: true
+            },
+            layout: {
+                improvedLayout: true
+            }
+        };
+
+        let network = new vis.Network(container, data, options);
+        let physicsEnabled = true;
+
+        // Functions for interaction
+        function resetView() {
+            network.fit();
+        }
+
+        function togglePhysics() {
+            physicsEnabled = !physicsEnabled;
+            network.setOptions({physics: {enabled: physicsEnabled}});
+        }
+
+        function exportImage() {
+            const canvas = network.getCanvas();
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'ps2_games_graph.png';
+            link.href = dataURL;
+            link.click();
+        }
+
+        // Event listeners
+        network.on('click', function(params) {
+            if (params.nodes.length > 0) {
+                const nodeId = params.nodes[0];
+                const node = nodes.get(nodeId);
+                console.log('Clicked on:', node.label);
+            }
+        });
+
+        network.on('doubleClick', function(params) {
+            if (params.nodes.length > 0) {
+                network.focus(params.nodes[0], {
+                    scale: 1.5,
+                    animation: {
+                        duration: 1000,
+                        easingFunction: 'easeInOutQuad'
+                    }
+                });
+            }
+        });
+
+        // Stabilization progress
+        network.on('stabilizationProgress', function(params) {
+            const progress = params.iterations / params.total;
+            console.log('Stabilization progress:', Math.round(progress * 100) + '%');
+        });
+
+        network.on('stabilizationIterationsDone', function() {
+            console.log('Graph stabilized');
+        });
+    </script>
+</body>
+</html>
